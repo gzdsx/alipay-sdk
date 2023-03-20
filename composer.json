@@ -1,0 +1,31 @@
+{
+  "name": "gzdsx/alipay-sdk",
+  "description": "PHP SDK for Alipay",
+  "version": "1.0.0",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "gzdsx",
+      "email": "songdewei@163.com"
+    }
+  ],
+  "homepage": "https://github.com/gzdsx/alipay-sdk",
+  "keywords": [
+    "alipay",
+    "alipaySdk",
+    "支付宝"
+  ],
+  "require": {
+    "php": "7.0",
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "AlipaySdk\\": "src/"
+    },
+    "files": []
+  }
+}
