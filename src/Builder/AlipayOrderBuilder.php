@@ -13,33 +13,38 @@
 
 namespace AlipaySdk\Builder;
 
-
+/**
+ * Class AlipayOrderBuilder
+ * @package AlipaySdk\Builder
+ */
 class AlipayOrderBuilder
 {
-    protected $order = [];
+    protected $atributes = [];
 
-    public function __construct($order = [])
+    public function __construct($atributes = [])
     {
-        $this->order = $order;
+        $this->make($atributes);
     }
 
-    public function setOrder($orer)
+    public function make($atributes)
     {
-        $this->order = $orer;
+        $this->atributes = $atributes;
     }
 
-    /**
-     * @return array
-     */
-    public function order()
+    public function all()
     {
-        foreach ($this->order as $k => $v) {
+        return $this->atributes;
+    }
+
+    public function toArray()
+    {
+        foreach ($this->atributes as $k => $v) {
             if (is_numeric($k) || is_null($v) || empty($v)) {
-                unset($this->order[$k]);
+                unset($this->atributes[$k]);
             }
         }
 
-        return $this->order;
+        return $this->atributes;
     }
 
     /**
@@ -47,7 +52,7 @@ class AlipayOrderBuilder
      */
     public function toJson()
     {
-        return json_encode($this->order(), JSON_UNESCAPED_UNICODE);
+        return json_encode($this->toArray(), JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -60,11 +65,11 @@ class AlipayOrderBuilder
 
     public function __set($name, $value)
     {
-        $this->order[$name] = $value;
+        $this->atributes[$name] = $value;
     }
 
     public function __get($name)
     {
-        return $this->order[$name] ?? null;
+        return $this->atributes[$name] ?? null;
     }
 }
